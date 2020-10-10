@@ -1,0 +1,20 @@
+language: minimal
+dist: focal
+
+git:
+  depth: 3
+
+before_install:
+  - ./.travis/setup.sh
+  - ./.travis/sanity_check_build_scripts.sh
+
+script:
+  - ./.travis/build.sh
+
+after_success:
+  - ./.travis/upload_docker_image.sh
+
+# TODO: I want to set these up to only notify on changes, but while I'm
+# developing this don't notify my
+notifications:
+  email: false
